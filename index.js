@@ -346,7 +346,15 @@ MarkerLabel_.prototype.setContent = function () {
     this.labelDiv_.innerHTML = content;
     this.eventDiv_.innerHTML = this.labelDiv_.innerHTML;
   } else {
-    this.labelDiv_.innerHTML = ""; // Remove current content
+    // Remove current content
+    while (this.labelDiv_.lastChild) {
+      this.labelDiv_.removeChild(this.labelDiv_.lastChild);
+    }
+
+    while (this.eventDiv_.lastChild) {
+      this.eventDiv_.removeChild(this.eventDiv_.lastChild);
+    }
+
     this.labelDiv_.appendChild(content);
     content = content.cloneNode(true);
     this.eventDiv_.appendChild(content);
