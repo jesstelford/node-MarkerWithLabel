@@ -10,6 +10,20 @@ If you drag a marker by its label, you can cancel the drag and return the marker
 
 Note: Be sure to include Google Maps JavaScript API V3 in your page _before_ using this library.
 
+## Using
+
+```shell
+npm install --save-dev markerwithlabel
+```
+
+From here you can use browserify, webpack or something similar to use the module.
+
+```js
+var MarkerWithLabel = require('markerwithlabel');
+```
+
+See the examples below for specific uses of this marker type.
+
 # LabeledMarker Documentation: Examples
 
 
