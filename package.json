@@ -1,6 +1,6 @@
 {
   "name": "markerwithlabel",
-  "version": "1.1.14",
+  "version": "1.1.15",
   "description": "npm module of Google Map utility's Marker With Label",
   "main": "index.js",
   "scripts": {
