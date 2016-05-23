@@ -39,15 +39,14 @@
  * @param {Function} obj1 Child class.
  * @param {Function} obj2 Parent class.
  */
- MarkerLabel_.prototype.extend = function(obj1, obj2) {
-   return (function(object) {
-     for (var property in object.prototype) {
-       this.prototype[property] = object.prototype[property];
-     }
-     return this;
-   }).apply(obj1, [obj2]);
- };
-}
+MarkerLabel_.prototype.extend = function(obj1, obj2) {
+  return (function(object) {
+    for (var property in object.prototype) {
+      this.prototype[property] = object.prototype[property];
+    }
+    return this;
+  }).apply(obj1, [obj2]);
+};
 
 /**
  * This constructor creates a label and associates it with a marker.
