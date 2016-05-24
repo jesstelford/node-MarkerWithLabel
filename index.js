@@ -36,17 +36,18 @@
 /*global document,google */
 
 /**
- * @param {Function} obj1 Child class.
- * @param {Function} obj2 Parent class.
+ * @param {Function} childCtor Child class.
+ * @param {Function} parentCtor Parent class.
  */
-MarkerLabel_.prototype.extend = function(obj1, obj2) {
-  return (function(object) {
-    for (var property in object.prototype) {
-      this.prototype[property] = object.prototype[property];
-    }
-    return this;
-  }).apply(obj1, [obj2]);
-};
+function inherits(childCtor, parentCtor) {
+  /** @constructor */
+  function tempCtor() {};
+  tempCtor.prototype = parentCtor.prototype;
+  childCtor.superClass_ = parentCtor.prototype;
+  childCtor.prototype = new tempCtor();
+  /** @override */
+  childCtor.prototype.constructor = childCtor;
+}
 
 /**
  * This constructor creates a label and associates it with a marker.
@@ -58,7 +59,6 @@ MarkerLabel_.prototype.extend = function(obj1, obj2) {
  * @private
  */
 function MarkerLabel_(marker, crossURL, handCursorURL) {
-  this.extend(MarkerLabel_, google.maps.OverlayView);
   this.marker_ = marker;
   this.handCursorURL_ = marker.handCursorURL;
 
@@ -79,6 +79,7 @@ function MarkerLabel_(marker, crossURL, handCursorURL) {
   // Get the DIV for the "X" to be displayed when the marker is raised.
   this.crossDiv_ = MarkerLabel_.getSharedCross(crossURL);
 }
+inherits(MarkerLabel_, google.maps.OverlayView);
 
 /**
  * Returns the DIV for the cross used when dragging a marker when the
@@ -535,7 +536,6 @@ MarkerLabel_.prototype.setVisible = function () {
  * @param {MarkerWithLabelOptions} [opt_options] The optional parameters.
  */
 function MarkerWithLabel(opt_options) {
-  this.extend(MarkerWithLabel, google.maps.Marker);
   opt_options = opt_options || {};
   opt_options.labelContent = opt_options.labelContent || "";
   opt_options.labelAnchor = opt_options.labelAnchor || new google.maps.Point(0, 0);
@@ -569,15 +569,7 @@ function MarkerWithLabel(opt_options) {
   // that the marker label listens for in order to react to state changes.
   google.maps.Marker.apply(this, arguments);
 }
-
-MarkerWithLabel.prototype.extend = function(obj1, obj2) {
-  return (function(object) {
-    for (var property in object.prototype) {
-      this.prototype[property] = object.prototype[property];
-    }
-    return this;
-  }).apply(obj1, [obj2]);
-};
+inherits(MarkerWithLabel, google.maps.Marker);
 
 /**
  * Overrides the standard Marker setMap function.
