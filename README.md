@@ -19,13 +19,14 @@ npm install --save-dev markerwithlabel
 From here you can use browserify, webpack or something similar to use the module.
 
 ```js
-var MarkerWithLabel = require('markerwithlabel');
+var MarkerWithLabel = require('markerwithlabel')(google.maps);
 ```
 
 See the examples below for specific uses of this marker type.
 
 # LabeledMarker Documentation: Examples
 
+For a complete example, see [the `example` folder](./example).
 
 ## Creating a Basic Marker
 
