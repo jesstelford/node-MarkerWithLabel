@@ -333,8 +333,6 @@ module.exports = function (gMapsApi) {
         if (this.labelDiv_.parentNode) {
             this.labelDiv_.parentNode.removeChild(this.labelDiv_);
         }
-        this.eventDiv_.parentNode.removeChild(this.eventDiv_);
-
         // Remove event listeners:
         if (this.listeners_) {
             for (i = 0; i < this.listeners_.length; i++) {
