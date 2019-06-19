@@ -452,12 +452,17 @@ module.exports = function(gMapsApi) {
     if (typeof yOffset === "undefined") {
       yOffset = 0;
     }
-    this.labelDiv_.style.left = Math.round(position.x) + "px";
-    this.labelDiv_.style.top = Math.round(position.y - yOffset) + "px";
-    this.eventDiv_.style.left = this.labelDiv_.style.left;
-    this.eventDiv_.style.top = this.labelDiv_.style.top;
-
-    this.setZIndex();
+    
+    if (position === null) {
+      this.labelDiv_.style.display = 'none';
+    } else {
+      this.labelDiv_.style.display = '';
+      this.labelDiv_.style.left = Math.round(position.x) + "px";
+      this.labelDiv_.style.top = Math.round(position.y - yOffset) + "px";
+      this.eventDiv_.style.left = this.labelDiv_.style.left;
+      this.eventDiv_.style.top = this.labelDiv_.style.top;
+      this.setZIndex();
+    }
   };
 
   /**
